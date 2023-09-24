@@ -6,7 +6,7 @@ import gc
 import av
 import os
 from PIL import Image
-from streamlit_webrtc import webrtc_streamer
+from streamlit_webrtc import webrtc_streamer, WebRtcMode
 
 
 # Decorator for analysis functions
@@ -124,7 +124,10 @@ def user():
 def Live():
     st.header("La détection d'émotions en temps réel. 📽 ")
 
-    webrtc_streamer(key="Live stream ", video_frame_callback=stream_emotion, sendback_audio=False)
+    webrtc_streamer(key="Live stream ",  mode=WebRtcMode.SENDRECV,
+                                 video_frame_callback=stream_emotion,
+                                   media_stream_constraints={"video": True, "audio": False},
+                                        async_processing=True,)
 
 def about():
     st.header("À propos de l'application 🕵🏼‍♂️")
