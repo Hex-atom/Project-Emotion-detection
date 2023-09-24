@@ -4,6 +4,6 @@ streamlit
 deepface
 av
 Pillow
-streamlit-webrtc
+streamlit-webrtc==0.47.0
 aiortc
 aioice
