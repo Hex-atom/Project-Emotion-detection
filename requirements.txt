@@ -5,3 +5,5 @@ deepface
 av
 Pillow
 streamlit-webrtc
+aiortc
+aioice
