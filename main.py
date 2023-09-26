@@ -124,10 +124,7 @@ def user():
 def Live():
     st.header("La détection d'émotions en temps réel. 📽 ")
 
-    webrtc_streamer(key="Live stream ",  mode=WebRtcMode.SENDRECV,rtc_configuration={
-                    "iceServers": get_ice_servers(),
-                    "iceTransportPolicy": "relay",
-                },
+    webrtc_streamer(key="Live stream ",  mode=WebRtcMode.SENDRECV,
                                             video_frame_callback=stream_emotion,
                                    media_stream_constraints={"video": True, "audio": False},
                                         async_processing=True,)
