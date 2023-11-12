@@ -90,13 +90,18 @@ def stream_emotion(frame):
     frame = cv2.flip(frame, 1)
     emotion = Extract_emotion(frame)
     faces = detecting_faces(frame)
-    find = face_Recognition(frame, 'user.jpg')
-    for x, y, w, h in faces:
-        if find:
-            green_Rectangle(frame, x, y, w, h, f'user is {emotion}')
-        else:
-            red_Rectangle(frame, x, y, w, h, f'someone is {emotion}')
-        gc.collect()
+    if faces is not None:
+        find = face_Recognition(frame, 'user.jpg')
+        for x, y, w, h in faces:
+            if find:
+                green_Rectangle(frame, x, y, w, h, f'user is {emotion}')
+            else:
+                red_Rectangle(frame, x, y, w, h, f'someone is {emotion}')
+            gc.collect()
+    else:
+        cv2.putText(frame, "No faces detected", (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.5,
+                     (255, 0, 0))
+        
     return av.VideoFrame.from_ndarray(frame, format="bgr24")
 
 def image():
