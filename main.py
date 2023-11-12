@@ -132,7 +132,7 @@ def Live():
     webrtc_streamer(key="Live stream ",  mode=WebRtcMode.SENDRECV,
                                         video_frame_callback=stream_emotion,
                                         media_stream_constraints={"video": True, "audio": False},
-                                        )
+                                        async_processing=True)
 
 def about():
     st.header("À propos de l'application 🕵🏼‍♂️")
